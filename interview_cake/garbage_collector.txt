@@ -1,0 +1,52 @@
+A garbage collector automatically frees up memory that a program is no longer using.
+
+For example, suppose we did this in Python:
+
+  function getMin(nums) {
+    // NOTE: this is NOT the fastest
+    // way to get the min!
+
+    var numsSorted = nums.sort();
+    return numsSorted[0];
+}
+
+var myNums = [5, 3, 1, 4, 6];
+console.log(getMin(myNums));
+
+Look at numsSorted in getMin(). We allocate that whole array inside of our function, and once our function returns we don't need it anymore. In fact, once that function returns we don't have any references to it anymore!
+
+What happens to that array in memory? The Python garbage collector will notice that we don't need it anymore and free up that space.
+
+In some lower-level languages, like C, we don't have a garbage collector. So we need to manually free up any memory we're not using anymore:
+
+  // make a string that can hold 15 characters
+str = (char *) malloc(15);
+
+// ... do some stuff with it ...
+
+// we're done. free that memory!
+free(str);
+C
+We sometimes call this manual memory management. Some languages both let us manually manage memory and have a garbage collector (this lets you optionally free memory faster, before the garbage collector gets to it, for example).
+take care of it.
+
+  function deleteNode(nodeToDelete) {
+
+    // get the input node's next node, the one we want to skip to
+    var nextNode = nodeToDelete.next;
+
+    if (nextNode) {
+
+        // replace the input node's value and pointer with the next
+        // node's value and pointer. the previous node now effectively
+        // skips over the input node
+        nodeToDelete.value = nextNode.value;
+        nodeToDelete.next  = nextNode.next;
+
+    } else {
+
+        // eep, we're trying to delete the last node!
+        throw new Error("Can't delete the last node with this method!");
+    }
+}
+

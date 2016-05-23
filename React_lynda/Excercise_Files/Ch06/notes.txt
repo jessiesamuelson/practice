@@ -1,0 +1,46 @@
+npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg> --save` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+name: (start) bulletin-board
+version: (1.0.0)
+description: A React app
+entry point: (index.js) Note.js
+test command:
+git repository:
+keywords: react, javascript, bulletin board
+author: Jessie Samuelson
+license: (ISC)
+About to write to /Users/jessicasamuelson/Documents/Ex_Files_LReact_js_2016/Excercise_Files/Ch06/06_02/start/package.json:
+
+{
+  "name": "bulletin-board",
+  "version": "1.0.0",
+  "description": "A React app",
+  "main": "Note.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "javascript",
+    "bulletin",
+    "board"
+  ],
+  "author": "Jessie Samuelson",
+  "license": "ISC"
+}
+
+
+Is this ok? (yes)
+
+==========================================================================================================================
+npm install --save-dev babel-cli@6.4.0
+npm install --save-dev babel-preset-react

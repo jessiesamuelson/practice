@@ -1,0 +1,4 @@
+install node
+install react tools: sudo npm install -g react-tools
+jsx src/ build/
+build is the folder that converts our jsx into pure javascript

@@ -1,0 +1,52 @@
+- processes with relatively long waiting times: networking access and file system access.
+- share code and data structure between your front end and back end.
+- JavaScript is a dynamic language, meaning the type is determined by value, not when the variable is declared.
+- It is loosely typed versus strongly typed.
+- JSON comes naturally to JavaScript, which makes it ideal for web apps both on the front end and back end.
+
+- JSON stands for JavaScript Object Notation and it's based on a subset of the JavaScript language.
+- A good example is passing data from our back end to our front end.
+- In other environments, with different languages, you would have to do some sort of conversion. With JavaScript, it's much easier.
+
+
+- npm install gulp
+- gulp helps automate repetitive tasks
+- sudo npm install gulp -g
+
+- We can install packages locally and globally
+- Locally means we only need it in our current project which means the package will act just like the module we created on our own earlier. And we can also require it in to gain access to it.
+- On the other hand, if the package has a command line interface you need to access, you must install it globally, giving all your projects access to it via the command line.
+
+
+- we can specify a package.json file.
+- Among other things, it stores a list of the package dependencies you have in your project. That way using the npm command install it will go through that list and install everything.
+- npm init
+
+- npm install express
+
+SAILS
+- sudo npm install sails -g
+- in sails folder: sails new --no-frontend
+- sails generate api user
+- sails lift (choose 2)
+- Add name: 'string' to user model attribute
+- Then if you go to localhost:1337/user/create?name=Jessie you get create method
+
+KOA
+- Uses ES6, which requires harmony parameter
+- npm install koa
+- node --harmony koa-endpoint-demo.js
+
+PROMISES
+- Promises return an object which promises to do some work.
+- This object has separate callbacks for success and failures.
+- This let's us work with asynchronous code in a much more synchronous way.
+- Promises can be combined into dependency chains.
+- Promises are used to combat nested callbacks, sometimes referred to as callback hell.
+
+BLUEBIRD for PROMISES
+- npm install bluebird
+- PromisifyAll generates new functions with the keyword "async" as a suffix and adds them to the object.
+- We get a new function called readFileAsync
+
+- npm install co-fs

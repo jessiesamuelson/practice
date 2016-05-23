@@ -1,0 +1,21 @@
+http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/
+
+
+REST
+
+1. Use HTTP methods explicitly.
+This one's pretty straightforward. To retrieve data, you use GET. To create data, you use POST. To update or change data, you use PUT (not used in this tutorial). To delete data you use DELETE. So for example, this once-common approach is not a good one:
+
+2. Be stateless.
+This is a complicated concept but it boils down to “don't store state information on the server”. If you must save state, save it on the client side via cookies or other methods. A front-end framework like Angular (outside the scope of this tutorial, but stay tuned!) is particularly helpful here, as it creates an entire client-side MVC setup where you can save and manipulate the state of elements without hammering your server.
+
+
+3. Expose directory structure-like URIs.
+Instead of: 
+  http://app.com/getfile.php?type=video&game=skyrim&pid=68
+You want:
+  http://app.com/files/video/skyrim/68
+
+
+4. Transfer XML, JavaScript Object Notation (JSON), or both.
+Just make sure that your back-end is sending XML or JSON 

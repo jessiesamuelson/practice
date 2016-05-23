@@ -1,0 +1,3 @@
+-react components are composable, which means our user interface is comprised of different components
+-whenever i want to use this component i just use its variable name
+-sending properties to a component is similar to adding attributes to html

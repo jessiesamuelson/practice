@@ -1,0 +1,203 @@
+# CHAPTER 1.1 #
+
+- A NoSQL database is simply a database that does not use SQL.
+
+- SQL was designed to be a query language for relational databases, and relational databases are usually table- based, much like what you see in a spreadsheet.
+- In a relational database, records are stored in rows and then the columns represent fields in each row. Then SQL allows you to query within and between tables in that relational database.
+
+- NoSQL databases are more flexible
+- Many NoSQL databases allow you to define fields as you create a record.
+- Nested values are common in NoSQL databases.
+- You can have hashes and arrays and objects, and then nest more objects and arrays and hashes within those.
+- And then that way you can have nested values in your NoSQL database records.
+- Also fields are not standardized between records in NoSQL databases.
+
+- The main characteristic separating NoSQL databases from relational SQL databases is that they do not use query languages derived from SQL.
+- Additionally, many NoSQL databases are flexible in ways that relational databases are not.
+
+# CHAPTER 1.2 #
+
+DOCUMENT STORES
+- Documents are usually stored in a structured format such as XML or JSON or some other standardized format that can be queried.
+- Documents are usually organized into collections or databases. 
+- Each document usually has a specific key.
+- This allows you to retrieve the document quickly, and normally it's possible to query a document by the specific fields contained inside.
+
+KEY-VALUE STORES
+- Typically you have a key you can query by, and then there's a specific value at that key.
+- However, you usually can't query by anything other than the key.
+- Key-value stores are sometimes used alongside relational databases for caching.
+
+BIG TABLE/TABULAR DATABASES
+- Tabular databases are named after Google's proprietary BigTable implementation.
+- Each row in a tabular database can have a different set of columns.
+- Tabular databases are designed for large numbers of columns in each row, and rows are typically versioned. 
+
+GRAPH DATABASES
+- Graph databases are designed for data that's best represented as interconnected nodes.
+- So for example, if you have a series of rowed intersections that you want to keep in a database, a graph database is a good way of doing that.
+
+OBJECT DATABASES
+- Object databases are tightly integrated with object-oriented programming languages.
+- Object databases act as a persistence layer.
+- You store the objects from your programming language directly into the object database.
+- You can also link objects together through pointers.
+
+# CHAPTER 1.3 #
+
+-Many NoSQL databases can be used to easily create web applications with customizable fields.
+- You don't have to worry about schema changes and you can still index the fields.
+- For instance, if you have an application that keeps track of comments on articles, you can add votes later.
+- Another possibility for NoSQL is to use it as a caching layer.
+
+- You might have a relational database that you want to keep traffic away from.
+- You can use NoSQL as a caching layer and write code to pull data from the relational database and store it in NoSQL, then you can use NoSQL for your API.
+- Many NoSQL databases can also store binary files.
+- With NoSQL you don't have to worry about file system permissions.
+- NoSQL databases will frequently extract all the metadata about a file and allow you to query by it.
+- You can also use NoSQL to attach other data to specific files.
+
+- And finally, some NoSQL databases allow you to serve full web applications.
+- Your HTML, stylesheets, and JavaScript can be served directly from NoSQL, then you can use the permissions in NoSQL to control who can read and write data.
+- NoSQL databases can be used to build new applications from scratch as well as augment the capabilities of a relational database.
+- Even if you're working with an existing application, you can start using NoSQL databases now to take advantage of their features.
+
+
+# CHAPTER 2 #
+Install:
+
+http://couchdb.apache.org/
+
+to load in data dumps:
+
+go to finder
+go to "Go" tab
+hold down option
+scroll down to library
+select application support
+select CouchDB
+select var
+select lib
+select couchdb
+
+this is where you pasted in files
+
+# CHAPTER 3.1: STORING DATA #
+- We already have a couple of databases in this fresh server.
+- We have _replicator and _users. These two databases are used to help run CouchDB.
+- CouchDB uses these databases as a way of organizing documents in specific sets.
+- Databases are also used to enforce security and access control across all of the documents that are part of that database.
+
+- Create new database, give it a name
+- Click new document
+- You'll notice that it automatically gave us a hash for the ID field.
+- Under normal circumstances, you'll want to accept this hash value unless you have a good reason not to use it.  
+- Click add field, and provide field name and value, eventually save document
+- automatically _rev is created, which tracks revision numbers
+
+
+# CHAPTER 3.2: NESTING DOCUMENT DATA #
+- Flat fields are just one of the many options you have for storing data in CouchDB.
+- Arrays and objects allow you to nest data within documents.
+
+# CHAPTER 3.3: RETRIEVING DATA #
+- List all databases: http://127.0.0.1:5984/_all_dbs
+- List all documents in a database: http://127.0.0.1:5984/restaurant/_all_docs
+  List all documents in a database: http://127.0.0.1:5984/database_name/_all_docs
+- List all key/values in a document: http://127.0.0.1:5984/restaurant/30dee7e8281b1f90776671ec1a000341
+  List all key/values in a document: http://127.0.0.1:5984/database_name/id
+
+# CHAPTER 3.4: SPECIFYING SEARCH CRITERIA #
+- In restaurant database, go to view and switch to temporary view
+- in the left you'll see the map function
+
+  function(doc) {
+    emit(doc.name, doc.content);
+  }
+
+  function(doc) {
+    if ( !doc.hours ) {
+      emit(doc.name, doc.content);
+    }
+  }
+
+
+# CHAPTER 3.5: DEFINING VIEWS #
+- http://127.0.0.1:5984/restaurant/_design/pages/_view/without_hours
+- http://127.0.0.1:5984/database_name/_design/pages/_view/view
+- Further filter data by supplying a key: 
+  http://127.0.0.1:5984/restaurant/_design/pages/_view/without_hours?key=%22Delivery%22
+
+
+# CHAPTER 3.6: REDUCING DATA #
+- Each document has the name of the menu item as well as the category that that menu item belongs to. What I'd like to do with this data is create a reduce function to tell me how many items are in each category.
+- Next, we emit the category as the key, and the document as the value.
+  function(doc) {
+    if(doc.category) {
+      emit(doc.category, doc);
+    }
+  }
+
+- Now let's paste in a reduce function that will allow us to count the items in each category.
+  function(key, values, rereduce) {
+    return values.length
+  }
+
+
+- Now, you'll notice a Reduce check box. Click the check box and the reduce function runs.
+- So the reduce function takes three arguments: key, values, and rereduce. The reduce function gets called once for each key that the map function supplies. So even though three documents had the key of entree, the reduce function was called only once for entree. The values argument is an array that contains all the values that match up to that key.
+
+So, in this case, the values array had three documents for the key entree. Finally, we are returning the value that we want for each key. In this case, we're just returning the length of the array. You can use whatever logic you want here to return sums or other statistics on your values, but at the end, you just want to return one value. Also, whenever you return more than one value, the reduce function is called recursively and rereduce is set to true.
+
+This can help you reduce complex nested datasets. Reduce functions work together with map functions. The map function first retrieves a keyed set of data. Then, the reduce function takes the values mapped to each key, and transforms them into a single value. Using this combination allows you to retrieve summaries directly from the database, saving time and bandwidth.
+
+
+# CHAPTER 4.1: ATTACHING AND RETRIEVING IMAGES #
+- While CouchDB makes it possible to store and query JSON-encoded data, it also allows you to store and retrieve binary files.
+- CouchDB supports binary data through a feature called Attachments.
+- Go to the document, and hit upload attachment
+
+# CHAPTER 4.2: QUERYING ATTACHMENTS #
+- We can create views using the Temporary View options, and adding a map function such as:
+  function(doc) {
+    if(doc._attachments) {
+      var filename;
+      for (var key in doc._attachments) {
+        if (doc._attachments.hasOwnProperty(key) && typeof(key) !== 'function') {
+         filename = key;
+         break;
+        }
+      }
+
+      emit(doc.name, filename);
+    }
+  }
+
+
+# CHAPTER 4.3: DEPLOYING ATTACHMENTS #
+- With an application, you can upload HTML and JavaScript that can be served directly to a browser.
+- go to design documents view
+- select _design/menu, this is the design document that was created when we created the items view
+- Now select Upload Attachment, and then browse for index.html
+- If we remove/alter a document from the database, the view will also update accordingly
+http://127.0.0.1:5984/restaurant2/_design/menu/index.html
+
+# CHAPTER 4.4: SECURING COUCHDB #
+- When a fresh copy of CouchDB is started, there is no authentication in place; anyone can access any part of it through HTTP.
+- When you're in development, this is very handy. However, this is almost never acceptable for production use.
+- Fortunately, CouchDB allows you to lock down individual databases as well the whole server.
+- First Create an admin in bottom right corner of futon
+- Anonymous users can still read from and write to the database.
+- Click configuration link:
+- set require_valid_user to true
+- if we run  curl "http://127.0.0.1:5984/restaurant2" from command line we'll see: {"error":"unauthorized","reason":"Name or password is incorrect."}
+- If we add username and pw: curl "http://Admin:admin@127.0.0.1:5984/restaurant2"
+{"db_name":"restaurant2","doc_count":10,"doc_del_count":2,"update_seq":27,"purge_seq":0,"compact_running":false,"disk_size":172136,"data_size":66088,"instance_start_time":"1463492793260069","disk_format_version":6,"committed_update_seq":27}
+
+
+# CHAPTER 4.5: USING NODE #
+- note cradle in dependencies of package.json
+- Cradle is a module that you can use to connect to the CouchDB.
+
+
+

@@ -1,0 +1,35 @@
+#####################
+# Stacks and Queues #
+#####################
+
+# STACKS
+
+- The idea of a stack is that when you add something to the stack, you add it to the top.
+- We have a data structure of multiple elements where the last element added to the stack will be the first element removed.
+- This is last in, first out, or LIFO data structure.
+- push (add item to the end of data structure)
+- pop (remove an item from the end of the data structure: returns that element)
+- peek (gives us the last value but doesn't remove it)
+- This is an intentionally limited, an intentionally restricted data structure.
+
+# Abstract Data Tyoes (ADTs)
+
+- But stacks and queues and linked lists, these are much more reusable, much more abstract than that. We can refer to them as abstract data types. So a stack is an abstract data type.
+- It has expected defind behavior. If we have a stack, we have a last in, first out data structure that we can push and pop and peek.
+
+# QUEUE
+
+- Queues are first in first out FIFO.
+- And queues are very commonly used in multi threading and concurrency situations to keep track of what tasks are waiting to be performed and making sure we take them in that order.
+- All we want to be able to do is add an item to the end of the queue, and remove an item from the front of the queue.
+- push to the end
+- shift from the beginning
+
+# PRIORITY QUEUE
+
+-  Now if you add multiple items that have the same priority, they will queue as normal in a first in, first out order. If something comes along with a higher priority, then it will go ahead of them in the queue and it would be removed from the queue beforehand. Anything with a lower priority just queues up as normal behind them.
+- In order to implement this you need a comparator
+
+# DEQUE
+- Double Ended Queue.
+- We have a collection of items and we can add new items to this but we can choose to add to either end and we can remove either from the front or from the rear.

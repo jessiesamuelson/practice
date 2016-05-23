@@ -1,0 +1,152 @@
+##############
+# QUICK SORT #
+##############
+
+- comparison sort: it can sort items of any type for which a "less than" relation is defined.
+- operates in-place on an array, requiring small amounts of memory to perform the sorting
+- O(n log n) on averate
+- O(n^2) in worst case (rare)
+
+- Quicksort is a divide and conquer algorithm. Quicksort first divides a large array into two smaller sub-arrays: the low elements and the high elements. Quicksort can then recursively sort the sub-arrays.
+
+The steps are:
+
+1. Pick an element, called a pivot, from the array.
+2. Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it (equal values can go either way). After this partitioning, the pivot is in its final position. This is called the partition operation.
+3. Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values.
+4. Base case: arrays of wsize 0 or 1
+
+
+public class QuickSortAlgorithm {
+
+    protected static int A[];
+
+    public void sort(int[] A) {
+        if (A == null || A.length == 0)
+            return;
+        quicksort(A, 0, A.length - 1);
+    }
+
+    public void quicksort(int[] A, int left, int right) {
+        int pivot = A[left + (right - left) / 2];
+        int i = left;
+        int j = right;
+        while (i <= j) {
+            while (A[i] < pivot) {
+                i++;
+            }
+            while (A[j] > pivot) {
+                j--;
+            }
+            if (i <= j) {
+                exchange(i, j);
+                i++;
+                j--;
+            }
+        }
+        
+        if(left < j)
+            quicksort(A,left,j);
+        if(i < right)
+            quicksort(A,i,right);
+    }
+
+    public void exchange(int i, int j){
+        int temp=A[i];
+        A[i]=A[j];
+        A[j]=temp;
+    }
+    
+    public String toString() {
+        String s = "";
+        s += "[" + A[0];
+        for (int i = 1; i < A.length; i++) {
+            s += ", " + A[i];
+        }
+        s += "]";
+        return s;
+    }
+
+}
+
+
+
+Step 1.  Choosing the Pivot Element
+Choosing the pivot element can determine the complexity of the algorithm i.e. whether it will be n*logn or quadratic time:
+
+a. Normally we choose the first, last or the middle element as pivot. This can harm us badly as the pivot might end up to be the smallest or the largest element, thus leaving one of the partitions empty.
+
+b. We should choose the Median of the first, last and middle elements. If there are N elements, then the ceiling of N/2 is taken as the pivot element.
+
+Example:
+
+8, 3, 25, 6, 10, 17, 1, 2, 18, 5
+
+first element: 8
+middle element: 10
+last element: 5
+
+Therefore the median on [8,10,5] is 8.
+
+Step 2.  Partitioning 
+
+a. First thing is to get the pivot out of the way and swapping it with the last number. 
+
+Example: (shown using the above array elements)
+
+5, 3, 25, 6, 10, 17, 1, 2, 18,  8
+
+b. Now we want the elements greater than pivot to be on the right side of it and similarly the elements less than pivot to be on the left side of it.
+
+For this we define 2 pointers, namely i and j. i being at the first index and j being and the last index of the array.
+
+   * While i is less than j  we keep in incrementing i until we find an element    greater than pivot.
+   * Similarly, while j is greater then i keep decrementing j  until we find an element less than pivot.
+   * After both i and j stop we swap the elements at the indexes of i and j respectively.
+
+
+c. Restoring the pivot
+
+When the above steps are done correctly we will get this as our output:
+
+[5, 3, 2, 6, 1] [8] [10, 25, 18, 17]
+
+Step 3. Recursively Sort the left and right part of the pivot.
+
+
+
+
+
+
+
+
+Complexity of QuickSort
+
+Worst Case : O(N^2)
+
+This happens when the pivot is the smallest or the largest element. Then one of the partition is empty and we repeat the recursion for N-1 elements
+
+Best Case: O(NlogN)
+
+This is when the pivot is the median of the array and the left and right part are the of the same size.
+
+There are logN partitions and to compare we do N comparisions
+
+
+Conclusion :
+
+
+Advantages
+
+* One of the fastest algorithm on average.
+* Doesn't need additional memory i.e. it's an in-place sorting algorithm.
+
+Disadvantages
+
+Worst Case complexity is O(N^2).
+
+Comparision to Merge Sort
+
+* Merge Sort guarantee O(NlogN) time, however it requires additional memory with size N.
+* Quick Sort doesn't require additional memory but the running time is not guaranteed.
+* Usually Merge Sort is not used for Memory Sorting. Its used only for external memory sorting.

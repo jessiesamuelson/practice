@@ -1,0 +1,101 @@
+A binary tree is a tree where every node has two or fewer children. The children are usually called left and right.
+
+function BinaryTreeNode(value) {
+    this.value = value;
+    this.left  = null;
+    this.right = null;
+}
+
+A binary tree with no gaps is called "perfect"
+
+# Perfect Binary Trees
+Property 1: the number of total nodes on each "level" doubles as we move down the tree.
+Property 2: the number of nodes on the last level is equal to the sum of the number of nodes on all other levels (plus 1). In other words, about half of our nodes are on the last level.
+
+Let's call the number of nodes n, and the height of the tree h. h can also be thought of as the "number of levels."
+
+If we had h, how could we calculate n?
+
+Let's just add up the number of nodes on each level! How many nodes are on each level?
+
+If we zero-index the levels, the number of nodes on the xth level is exactly 2^x
+
+Level 0: 2^0 = 1 nodes
+Level 1: 2^1 = 2 nodes
+Level 2: 2^2 = 4 nodes
+Level 3: 2^3 = 8 nodes
+etc
+
+So our total number of nodes is:
+
+n = 2^0 + 2^1 + 2^2 + 2^3 + ... + 2^{h-1}
+
+For a perfect tree:
+But we can simplify. Property 2 tells us that the number of nodes on the last level is (1 more than) half of the total number of nodes, so we can just take the number of nodes on the last level, multiply it by 2, and subtract 1 to get the number of nodes overall. We know the number of nodes on the last level is 2^{h-1}​, So:
+
+n = 2^(h-1) * 2 - 1
+n = 2^(h - 1)* 2^(1) - 1
+n = 2^(h - 1 + 1) - 1
+n = 2^h - 1
+
+
+So that's how we can go from h to n. What about the other direction?
+
+We need to bring the h down from the exponent. That's what logs are for!
+
+First, some quick review. 
+  log_{10} (100) 
+simply means, "What power must you raise 10 to in order to get 100?". Which is 2, because
+  10^2 = 100
+​
+We can use logs in algebra to bring variables down from exponents by exploiting the fact that we can simplify 
+  log_{10}(10^2)
+What power must we raise 10 to in order to get 10^2? That's easy—it's 2.
+
+n = 2^h - 1
+n + 1 = 2^h
+log_{2}(n + 1) = log_{2}(2^h)
+log_{2}(n + 1) = h
+
+
+So that's the relationship between height and total nodes in a perfect binary tree.
+
+=====================================================================================================
+
+Depth-first traversal is a method for walking through a tree or graph where you go as deep as possible down a path before "fanning out." Your set of visited nodes will shoot out from the starting point along one path, with more single paths progressively shooting off of that one as each path hits a dead end.
+
+Depth-first search or DFS uses depth-first traversal to search for something in a tree or graph.
+
+Depth-first traversal is often compared with breadth-first traversal.
+
+Advantages:
+
+Depth-first traversal on a binary tree generally requires less memory than breadth-first.
+Depth-first traversal can be easily implemented with recursion.
+
+Disadvantages:
+
+A DFS doesn't necessarily find the shortest path to a node, while breadth-first search does.
+
+=====================================================================================================
+
+Breadth-first traversal is a method for walking through a tree or graph where you "fan out" as much as possible before going deeper. Your set of visited nodes will seem to "ripple outwards" from the starting point.
+
+Breadth-first search or BFS uses breadth-first traversal to search for something in a tree or graph.
+
+Breadth-first traversal is often compared with depth-first traversal.
+
+Advantages:
+
+A BFS will not necessarily find a target as quickly as possible, but it will find the shortest path between the starting point and the target. A depth-first search will not necessarily find the shortest path.
+Disadvantages
+
+A BFS on a binary tree generally requires more memory than a DFS.
+
+=====================================================================================================
+
+A binary search tree is a binary tree in which, for each node:
+
+The node's value is greater than all values in the left subtree.
+The node's value is less than all values in the right subtree.
+BSTs are useful for quick lookups. If the tree is balanced, we can search for a given value in the tree in O( lg{n} ) time.

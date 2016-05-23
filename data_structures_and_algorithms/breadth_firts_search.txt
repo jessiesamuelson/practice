@@ -1,0 +1,85 @@
+Breadth First Search
+
+Graph G=(V,E)
+V = set of vertices
+E = set of edges
+edges (v,w) = {v,w} is a set of unordered pairs (undirected)
+edges (v,w) = (v,w) is a set of ordered pairs (directed)
+
+Applications:
+- web crawling (google uses breadth first)
+- social networking: friend finder (find a friend with mutual friends, etc)
+- network broadcast 
+- garbage collection
+- model checking
+- checking mathematical conjunction
+- solving puzzles & games
+
+Pocket Cube: 2x2x2
+  configuration graph
+  vertices: 
+  - has a vertex for each possible state
+  - number of vertices = 8! 3^8
+  edges:
+  - every move is an edge
+
+solved
+  - all the places to get to from 1 move
+    - all the configurations you can reach in two moves
+      - all the configurations you can reach in three moves
+      ... - 11 moves
+
+<------diameter------> the number of moves if you always follow the best path (worst case for best path)
+
+nxnxn = n^2/log(n)
+
+Graph Representation
+1. Adjavency lists: 
+  - array Adj of |V|
+  - linked lists
+  - for each vertex u element V
+    Adj[u] stores its neighbors
+  - v element of V
+
+Directed:
+Adj[b] = {b,c}
+Adj[a] = {c} 
+Adj[c] = {b} 
+
+Object oriented:
+V.neightbors = Adj[V]
+
+Implicit representation
+Adj(u) os a function
+v.neightbors is a method
+
+BFS
+-visit all nodes reachable from a given s element of V
+-O(V+E)
+- look at all nodes reachable in O
+
+up vote
+16
+down vote
+accepted
+BFS:
+
+Time complexity is O(|V|) where |V| is the number of nodes,you need to traverse all nodes. 
+Space complecity is O(|V|) as well - since at worst case you need to hold all vertices in the queue.
+
+DFS:
+
+Time complexity is again O(|V|), you need to traverse all nodes. 
+Space complexity - depends on the implementation, a recursive implementation can have a O(h) space complexity [worst case], where h is the maximal depth of your tree. 
+Using an iterative solution with a stack is actually the same as BFS, just using a stack instead of a queue - so you get both O(|V|) time and space complexity.
+
+(*) Note that the space complexity and time complexity is a bit different for a tree then for a general graphs becase you do not need to maintain a visited set for a tree, and |E| = O(|V|), so the |E| factor is actually redundant.
+
+
+There are two major factors of complexity
+
+Time Complexity
+Space cimplexity
+(1) Time complexity :- It is the ammount of time need to generate the node . In DFS amount of time needed is proportional to the depth and branching factor. For DFS the total amount of time needed is given by- 1+b+b2+b3+...........+bd~~bd Thus the time complexity = o(bd)
+
+(2) Space cimplexity:- it is the amount of space or memory required for getting a solution DFS stores only current path it is pursuing.Hence the space complexity is a linear function of the depth 

@@ -1,0 +1,81 @@
+- In Java, the standard array is fixed size
+- ArrayList in Java allow for resizeable arrays
+- NAArray in Objective-C is fixed
+- NSMutableArray is resizeable
+- Typically adding a new element at the end is easier, faster, and requires less work for that array to do.
+- Let's say we're going to add the value 999 at position two. It will require things to be shuffled around. We'll have to move some of the elements and re-organize them, and re-number those positions in the array. This is possibly a handful of pieces of data, but it could be hundreds or thousands before we can fit the new one in.
+- But just because something is happening in the background doesn't mean you can ignore the fact that this does have a performance impact.
+
+- Appending an item to the end:
+  - Java: add(value)
+  - Objective-C: addObject:value
+  - Javascript: push(value)
+  - Ruby: push(value)
+  - Python(uses list instead of array): append(value)
+
+- Inserting items at specific index
+  - Java: add(index, value)
+  - Objective-C: addObject:value atIndex:index
+  - Javascript: splice(index, items_to_remove, items_to_insert)
+  - Ruby: insert(index, value)
+  - Python(uses list instead of array): insert(index, value)
+
+- Removing from array
+  - Java: remove(index)
+  - Objective-C: removeObjectAtIndex:index
+  - Javascript: pop (at the end), splice
+  - Ruby: pop (at the end), delete_at
+  - Python(uses list instead of array): pop (end), remove
+
+Five fundamental behaviors we might need to figure out. 
+  - How to access:
+    -  How do we get to the values in this data structure? Whether that's getting to one specific element or wanting to iterate through all of them. To systematically loop through every element.
+  - how to insert: 
+    - Then there's how do we add a new item to this data structure? Often including, as we've seen. How we would add an item at a specific position.
+  - how to delete:
+    - The flip side of that how do we delete or remove one whether from the end or this particular position.
+  - how to find:
+    - How do we find or search that data structure to get a specific item when we don't know where it is or even if it exists at all.
+  - and how to sort:
+    - And finally can we sort the content of the data structure. So it's in some kind of meaningful order. And that's whether we want to sort it in place or we want another copy of it that's sorted.
+
+many data structures don't support any kind of searching behavior.
+many don't provide any sorting behavior
+
+
+# Sorting Arrays
+- alphabetically
+- ascending, descending
+- array.sort can be costly
+- insertion sort, quick sort and heap sort
+- Sorting is always computationally intensive, you might need to do it but we want to minimize it. And keeping conscious about how much data we have and how often we're asking to sort it might lead us into choosing different data structures as we learn more about the others.
+
+# Sorting Arrays of custom objects
+- In object orientated languages, you often have arrays of your own custom objects, not just arrays of simple numeric or even text values. By default, there's usually no problem creating an array of custom objects, but if you then ask that array to sort those objects using the built in sort functionality in the language. 
+- Usually only needs a few lines and it's typically called a comparator, or compare function, or compare method. And this is not sorting, this is comparing. There is a big difference. Sorting is hard, comparing is easy.
+- A comparator or compare function just needs to be able to take any two of your custom objects, employee a and employee b, let's say. And have a little bit of logic that says,is a less than b, or greater than b, or equal to b? With whatever that means for us. So this example would first compare that last name property of each object. If they're equal, it will then compare the first name.
+
+PseudoCompare ( Employee a, Employee b )
+  if a.lastname < b.lastname return -1
+  if a.lastname > b.lastname return 1
+  if a.lastname == b.lastname
+    if a.firstname < b.firstname return -1
+    if a.firstname > b.firstname return 1
+    if a.firstname == b.firstname return 0
+  end if
+end
+
+# Searching Arrays
+- Linear/sequential search: we can iterate through 1 by 1: O(n) complexity
+- Linear time algorithm
+- If the data is ordered, there are better searches than linear searches
+
+# Using built in search behavior
+- contains vs indexOf
+
+# Binary Search O(log n)
+- Can be done if array is in ascending or descending order
+-But a binary search is different. It begins. Not by looking at the initial element. But by getting the length of the array, in this case it's 22 values. It divides the array in two, and it immediately jumps right to that point. Right to the middle of the array. And compares the value at that position with the one we're looking for.
+- And, what that means, because these things are in order, is I can now completely discard of this element of the array. And all the elements below it.
+- We take the remaining half of the array and we divide it in half, again jumping directly to it's midpoint. 
+- Binary searches can only be done on ordered data.

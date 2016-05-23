@@ -1,0 +1,22 @@
+ARRAYS:
+Arrays, easy to create. Easy to use. Fantastic for directly indexing into them when you know the position you're going to. But poor at searching if you don't know where an element is as it will do a linear search if the array is unsorted. Now, searching can be quicker if the array is sorted but sorting itself is inherently demanding. Arrays are poor at inserting and deleting, particularly when inserting or deleting from any other location than the start or the end.
+
+LINKED LISTS:
+And then there's linked lists. Very efficient to add items and very efficient for deleting them. Not that good at directly accessing a specific element because it will require a traversal of the list. And for the same reason, poor at searching and won't retrieve those items in a sorted order unless you created them in the list that way.
+
+STACKS AND QUEUES:
+Stacks and queues have very specific purposes. If you aren't willing to embrace the constraint of last in, first out or first in, first out, you shouldn't be using them. Now, for example, one of the best uses for a stack in programming is when parsing code or expressions. Where you need to do something like validate, you have the correct amount of opening and closing curly braces, square brackets or parenthesis.
+
+HASH TABLE:
+These are very fast for inserting and deleting. Very fast for lookup when you have the key. They do require a little more space in memory than say erase because there's is some overhead. And each retrieval or insertion takes a little processing for the hashing and indexing. But the good thing about that is it's the same amount of processing every time even if the hash table gets very large. Now, if you're using a custom object as a key, you might need to provide your own hash and or equality functionality as we talked about. But in a situation where you have a lot of key value pairs and or volatile data, these beat arrays hands down. 
+
+SETS:
+Onto sets. As we've seen, sets are fantastic for checking membership. In situations where you have to collect a lot of objects and you need to both exclude duplicates. And quickly find out if an object is already part of a collection, there's nothing better than a set. And they are terrible at almost everything else.
+
+TREES:
+Binary search trees are the best way when you have large collections of objects that need to stay in order. They've got fast retrieval, they're fast to search, fast to insert and delete. But, like hash tables, they take some overhead to create and manage.  Great if you care about the order
+
+HEAPS:
+As we saw, were a type of binary tree that are great for priority queues, among a few other things.
+
+Now, a general principle that immutable or fixed size data structures tend to be faster and smaller in memory than mutable ones. Something to take from this idea is in the situation where you may initially need a mutable re-sizeable data structure. So you can load it up with an unpredictable amount of data. But that data structure won't then change after the initial load. Well, it might be worth your while to copy the mutable version into an immutable fixed size version of that data structure. If all you're doing from then on out is just accessing it.

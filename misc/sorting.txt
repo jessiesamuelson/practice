@@ -1,0 +1,70 @@
+Sorting Algorithms
+
+insertion sort:
+
+for i = 1, 2, …, n
+insert A[i] into sorted array A[0:i-1]
+by pairwise swaps down to the correct position
+
+A=[5,2,4,6,1,3]
+
+start at A[1] = 2 which is our key
+compare A[0] to A[1] or A[i] and swap.  Now we have
+A=[2,5,4,6,1,3]
+Next,
+compare A[1] and A[2] or A[i]
+We get:
+A= [2,4,5,6,1,3]
+i = 3
+A= [2,4,5,6,1,3]
+i=4    A[i] = 1
+A= [1,2,4,5,6,3] (four swaps)
+i = 5  A[i] = 3
+A= [1,2,3,4,5,6] (3 swaps)
+
+theta(n) steps in terms of key positions
+on each step you have to do up to theta(n) work (or compare and swaps)
+so this is theta(n^2) algorithm
+here we consider compare and swap as one step.  true for numbers
+if you’re comparing records or something more complicated, the comparison becomes substantially more expensive.
+
+_________________
+Binary Insertion Sort:
+
+You can lessen the cost by changing the pairwise swaps with a binary search
+
+Do a binary search on A[0: i-1] already sorted
+in theta(logi) time
+
+but to do this sort, we still have a theta(nlogn) time sort.
+
+_______________
+Merge Sort:
+
+A split into two: L and R
+L becomes L’, R becomes R’
+we have a merge routine that takes L’ and R’ and turns it into the sorted A
+eventually we get a sorted array A
+
+Array A, size n
+2 arrays of size n/2
+2 sorted arrays of size n/2
+sorted array of size n
+
+Merge assumes 2 sorted arrays and merges them together. (L’ and R’)
+L’ = [20,13,7,2]
+R’= [12,11,9,1]
+Start comparing L’[3]=2 and R’[3]=1 and put R’[3] into A’ because it is smaller
+Now compare L’[3]= 2 and R’[2]=9 and put L’[3] into A’ because 2 is smaller,
+etc.
+A’= [1,2,7,9,11,12,13,20]
+
+A[0:n]
+L=A[0: n/2-1] R=[n/2+1: n]
+
+theta(n) complexity
+
+32.26
+
+
+

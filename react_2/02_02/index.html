@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <script src="https://fb.me/react-0.13.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+  <title>My Second React</title>
+
+</head>
+
+<body>
+  <script type="text/babel">
+    // LETS DO THIS WITH JSX USING BABEL!
+
+    // COMPONENT
+    var HelloWorld = React.createClass({
+      render: function() {
+        return <div>
+          <h1>Hello World</h1>
+          <p>This is some text</p>
+        </div>
+      }
+    })
+    React.render( <HelloWorld />, document.body );
+  </script>
+</body>
+</html>

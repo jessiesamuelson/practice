@@ -1,0 +1,40 @@
+INTRODUCTION:
+- A data structure is just an intentional arrangement of data
+- The intentional arrangement of data held in memory. Inside a running application.
+- In computer science, a record is just a value that itself contains other values.
+- Each record represents a single transaction or a single book, whatever it is you're working with.
+- A field, being the term for an individual piece of information, a single piece of data inside a record.
+- A mathematical tuple is a grouped collection of elements
+- How do we describe a grouped collection of related elements?
+
+C STRUCT:
+- Now, the classic old school way is using a C-Style struct.
+- struct is a specific key word in C, it is part of the language
+- Instead of creating these loose informal groups of independent book variables, I could first define a book struct that contains the definition for what each book should consist of.
+- In this case, creating a variable called first that isn't a type of string or a type of double or bool. It says book struct. 
+- This will now have its own self-contained set of data, its own nested set of variables, what are called member variables, of that struct.
+- what's the difference between defining a struct and defining a class?
+- Unlike classes and objects, C-Style structs have no behavior, they have no methods, they are only a container for data. Simply a way to package several variables together, that's it. Also, structs don't need to be explicitly instantiated like objects do. And we don't use the word new or alloc in it, we just make them.
+- structs are value types, unlike objects. They and their contents are typically allocated directly on the stack, not as a reference to some other area of memory.
+- Another example, perhaps to store color information. We just need a variable define that will always hold values for red, green, blue and alpha.
+- In Ruby structs are implemented as lightweight class
+
+BASIC ARRAYS:
+- An array is a ordered collection of items. Multiple independent values enclosed inside one named container. So the array is given a name, the individual elements inside it are not.
+-Each separate element inside the array has an index, a number. And that index is not random. It is in order, it's in sequence, and this is what I mean by a ordered collection of items.
+- 1 Dimension/linear array.
+- Next, the simplest arrays are fixed size, also called immutable, meaning unchangeable arrays.
+- But one of the first behaviors added to arrays in any language is to have the ability to dynamically add or remove elements from it while the program is running.
+- simple arrays are typically restricted to a specific type of data. It's an array of integers, or an array of booleans, or an array of strings.
+- The more constraints you can put in place, the faster and smaller your data structure is able to be.
+- So flexibility introduces overhead. Flexibility might be required, sometimes absolutely necessary, but it adds at the expense of memory and performance.
+
+MULTIDIMENSIONAL ARRAYS:
+- when you have a two dimensional array, is basically an array of arrays.
+- three dimensional array is an array of arrays of arrays
+- So now, in a three dimensional array, we need three numbers to get to any one single element. 
+- Because when we use dimensions for data, it's really about grouping or nesting information.
+
+JAGGED ARRAYS:
+- So we're going to have a two dimensional array, and array of arrays, representing the number of tickets sold for every day in every month. So, the first dimension, 0 through 11, will represent January through December. And inside each of those we will have another array for each day in that month. So we begin with January, which has 31 days. We need 31 elements. So it's 0 through 30. Then February comes along. But it only has 28, or sometimes 29 days. So if we keep the array at a uniform size, we will have three unused elements.
+- This would be refered to as a jagged array for reasons that should be obvious. We have an array of arrays of different lengths.

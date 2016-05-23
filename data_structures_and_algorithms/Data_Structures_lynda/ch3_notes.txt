@@ -1,0 +1,28 @@
+#########
+# LISTS #
+#########
+
+- The biggest difference between a simple array versus a simple list is in the idea of direct access versus sequential access.
+- This is all to do with the way that these data structures are stored in memory.
+- An array is typically allocated in a contiguous area of memory.
+- All the elements, whatever they are, integers, or doubles, or references to objects. They are next to each other. And because of the predictability of this structure, we can go directly to any specific element, just using the index.
+- Direct access is also, sometimes called random access.
+- Lists are about sequential access
+- That a list is a collection of multiple elements, but its structure is not based on a strict numeric index like an array is. Instead, the list keeps track of a sequence of elements.
+- They do not need to be located next to each other.
+- Instead, when you access the list, what you get is the first element, sometimes called the first node of the list.
+- And also contains a link to the next node, the second. The second has a link to the third, and so on.
+- This is a linked list
+- The big difference, number one, the biggest downside of a classic linked list like this is we have to access the elements sequentially.
+ - The big difference number two. The enormous advantage of a linked list. Because of the way it's built, adding, removing elements is much, much easier than with an array.
+ - To add a new node at the start of this list, I would just create that new node wherever we have space and memory. I would point the list to it and tell it it's the first node and point it to the previous first node. Everything is still now in sequence, it's done, but no other nodes needed to be changed or shuffled around.
+ - Even deleting a node, even from the middle of a list is also simple. If I wanted to remove object3 over here on the right hand side, well it just requires the previous object2 that's currently pointing to object3 changes its link to point to object4.
+ - So if you have very volatile, changeable data, the difference here can be huge because we don't need to rearrange existing elements.
+ - Adding elements to a linked list always takes the same amount of time, whether the list is small or the list is large. It is a fixed time process. But adding or removing elements in an array gets more and more inefficient the bigger the array gets.
+ - Neither of these are good if you have to do a full linear search, although arrays are easier to sort and do a binary search, if that's an option for you
+
+ # Singly and Doubly linked list
+ - Instead of each node having a reference just to the next node (singly linked list), we add one more piece of data that it also has a reference to the previous node as well (doubly linked list).
+ - both removing and inserting is simpler with doubly linked lists. 
+ - instead, you point the final nodes next reference back to the first node. And the first node's previous reference to the final node. Now this would be considered a circular linked list or, in this case, a circular doubly linked list. 
+ 

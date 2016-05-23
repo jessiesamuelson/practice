@@ -1,0 +1,23 @@
+1995 JavaScript created
+1997 ECMAScript1
+2009 ECMAScript5
+2015 ECMAScript6
+
+Because all of the browsers do not support all ES6 features, all of our ES6 code should be transpiled. Transpiling is the process of taking ES6 code that we've written and converting it into ES5, so it can be read by browsers.
+
+Babel, Traceur, etc.
+
+Babel ES6 code in -> ES5 code out
+
+
+sudo npm install babel-cli -g
+
+babel script.js --out-file script-compiled.js
+
+sudo npm install -g webpack
+
+npm install --save-dev babel-loader
+
+create webpack.config.js -> run webpack in CLI which creates bundle.js file
+
+Generators are a new type of function that allow us to pause functions in the middle of execution, to be resumed later. You know you're looking at a generator when you see an asterisk immediately following the function keyword. Sometimes you'll see people use the asterisk right before the function name. We hit pause within our function by using the new yield keyword. And this can be used multiple times within the same function. 

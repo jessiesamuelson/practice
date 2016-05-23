@@ -1,0 +1,44 @@
+- install node
+- install epress generator: npm install -g express-generator
+- from director type: express nodetest1
+- You'll note that the express-generator routine created a file called package.json in your nodetest1 directory.
+- add mongodb and monk to the dependencies
+  npm install --save monk
+- prepare for setting up our database later: mkdir data
+- npm start
+
+install homebrew: 
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew doctor
+
+install mongodb with homebrew:
+  brew update
+  brew install mongodb
+
+create data folder where mongodb will write stuff:
+  sudo mkdir -p /data/db (from root)
+
+check permissions on that file:
+  ls -lh /data
+  sudo chown -R /data/
+
+check permissions on another file so that you can match them:
+  ls -lh local
+
+set them to match for data:
+  sudo chown -R jessicasamuelson:staff /data/
+
+up and running!
+
+Run mongodb:
+
+in one window go to root and type:
+  mongod --dbpath /<path to project>/data
+  mongod --dbpath /Users/jessicasamuelson/Documents/prep_practice/mean_tutorial/nodetest1/data
+
+in another window simply type:
+  mongo
+
+!!!!!!!!!!!!
+
+https://docs.mongodb.com/master/tutorial/install-mongodb-on-os-x/?_ga=1.146251506.717698726.1463691582

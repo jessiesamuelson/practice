@@ -1,0 +1,31 @@
+##############################
+# Hash-Based Data Structures #
+##############################
+
+# ASSOCIATIVE ARRAY
+
+- Associative Array: key value pairs
+- Keys are unique
+- Values can have duplicates
+- Associative array is an abstract data type
+
+# HASH FUNCTIONS
+
+- Hashing is a way to take data whether that data is strings like a password or an entire employee object. And run that through a function called a hash function.
+- the result that we get out is a small, simplified, purposefully shortened reference generated from that original data. And the result we end up with from putting our data through this hash function, it will be smaller, usually much, much smaller than the original data.
+- Almost without exception, and certainly all of the examples we're interested in, hash functions are not reversible. They are one way. Another word for this is they are not invertible
+- If you have two objects that you consider equal, they should return the same hash value.
+- Two equal hash values does not mean they came from two equal hashes
+- Hash collision: different objects with different data giving the same hash result
+- Well because being able to take a complex object and boil it down to a single integer representation is very useful in data structures because we can use that integer, that hash value As a way to get to a certain location.
+
+# HASH TABLE
+
+- The big benefit of hash tables over arrays and over linked lists is they're very fast, both for looking at whether an item exists or finding a specific item in a hash table, and for inserting and deleting items.
+- And buckets is the term we use for the entries in a hash table (key value pairs).
+- It will take our key and in this case a string, but it could be any object, and it'll run it through the hash function, getting a specific integer out. Now, depending on the hash function, this hash value could be quite a large integer value, so it's not going to just use this as an array index.
+-  But the idea is that when we need to get an object from the hash table, well, we tell the hash table we want the value for a specific key
+. It will take that key again, run it through the exact same hash function again, and it can then go directly to the specific bucket that contains the value we're looking for. There's no linear search, no binary search, no traversing a list.
+- Now in a perfect world, we would want each bucket in a hash table to contain one entry exactly, but that's not always possible. 
+-This is what is called the separate chaining technique in hash tables (list or data structure within bucket to handle hash collisions). With two or three entries in a bucket, it doesn't have a significant impact on any operation.
+- So if all you need is a unique hash value for each object, you probably already have that behavior. However, when you're writing your own classes, if you ever redefine what it means for objects of your class to be equal, you should always redefine the hash function too.

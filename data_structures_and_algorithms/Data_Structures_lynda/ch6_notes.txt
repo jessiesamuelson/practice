@@ -1,0 +1,72 @@
+########
+# SETS #
+########
+
+- A set is an unordered collection of objects
+- no index, sequence, or key
+- intentionally limited
+- do not allow duplicates
+- designed for very fast lookup
+-  As we've already seen, if we want to find a specific object in an array, we might have to do a linear search of the entire array. If we want to find a specific object in a linked list, we have to start in the beginning and traverse the list. And even with an associative array, we can only get directly to an object if we know what its separate key is.
+- Now behind the scenes, sets are actually using the same idea of hash tables most of the time.
+- instead of hashing a key object to store a separate value object, when you're using a set, the key object is the value object.
+- We don't have two pieces of information, we're just adding one.
+- So a set works by taking an object, whatever that is, hashing it, and then using the generated index to store the object itself.
+- But it's using the same general process that we saw previously with the idea of full hash tables.
+- And that means to check membership, to find out if we already know about a particular object, we just repeat the process.
+- Because to go directly to any specific object in a set, you already need to have the object. That's the only way you can get the index for it. So the only reason you would ever do this is to check for membership, to check existence. Do I already have this object?
+- You can also iterate through all the elements in a set. That's perfectly acceptable. You just may not have any guaranteed order to them.
+
+
+########
+# TREE #
+########
+
+- But when we have a tree, the difference is that each node might linked to one, or two, or more nodes.
+- there is always a one specific starting node in a tree data structure. It's referred to as the root node, which contains a value and links to other child nodes.  root is the parent to these child nodes
+- child nodes with the same parent are siblings
+- a node with no children is called a leaf
+- binary tree is a structure with a max of two child nodes per node
+- binary trees are great for binary search trees (BST)
+
+
+######################
+# BINARY SEARCH TREE #
+######################
+
+- the two child nodes are called left child and right child node, every node has left and right links (but it could be null)
+- You see, a binary search tree is not some random collection of stuff all strung together. It is a data structure that naturally stays sorted without the immense amounts of reshuffling that would be needed in basic array. And actually a binary search tree is sometimes called a sorted tree or an ordered tree. 
+- A left child node must be less than its parent, and a right child node must be more than its parent
+- every entry is unique (often keys for an associative array)
+- If we retrieve the items in a left to right sequence, we will get them all out in order.
+- Now, it's not unusual for this kind of thing to happen. We can't always guarantee that the way data is added will allow us to build a tree with a perfectly symmetrical structure all the way down. In this case we say that our tree is unbalanced. There are more levels on one side than on the other. The downside of this is it means, on average, we would have to perform more checks to find or insert or delete any values on the right hand side than we would on the left.
+- there are several implementations of this binary search tree idea that are self-balancing binary search trees. They include algorithms so that as the tree becomes unbalanced, and it will, it's going to be reorganized to more equally divide the number of levels. Now, this can be something as simple as shifting the position of the root node to reorganizing the entire tree.
+- It's more important that the number of levels are roughly equal to each other.
+- common self-balancing binary search tree algorithms that have names like Red-Black trees, AVL or Adelson-Velskii and Landis' trees, Splay trees, Scapegoat trees.
+- Well, binary search trees are fast for insertion, they're fast for deletion, they're fast for accessing any element even at large sizes
+- But because binary search trees stay sorted, what these do that hash tables don't is allow us to get all the items out of the tree in order to enumerate everything in sequence, which typical hash tables don't provide.
+
+
+########
+# HEAP #
+########
+
+- So the basics, heaps are a collection of objects. As we add items to this heap, they are always add top to bottom, left to right. We completely fill out any level before moving on to the next. So we don't have to worry about the tree becoming unbalanced like a binary search tree can.
+- Do we want our heap to be a min heap or a max heap? What that means is that do we want the top of the heap, our root node, to always contain the lowest values in the entire heap? Or do we want the top of the heap, the root node, to always contain the highest value in the entire heap?
+- And this is the way that with a min heap we always bubble up the lowest value to the very top of the heap, to the root.
+- Unlike a binary search tree, which does stay sorted and where we can easily traverse the tree and get everything out in sequence. That does not work with a heap.
+- It's because of this one thing, heaps are most useful for is the idea of a priority queue, which we covered conceptually early on. Where we don't care that much about the order of most of the objects. Whatever order we've added them is fine. Unless something should be considered a high priority. In which case we could give it a low value and see it bubble up to the top.
+- Best for priority queue
+
+
+##########
+# GRAPHS #
+##########
+
+- A graph is a collection of nodes, where any node can link to any other node. And, a node can link to multiple other nodes.
+- We could use a graph to model a social network with each node a person.
+- no one fixed starting/root node
+- great for describing a complex system of interconnected points
+- graph can be a set of vertices and a set of edges
+- if edges go one way: directed graph, both: undirected graph
+- edges can be weighted

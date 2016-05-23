@@ -1,0 +1,12 @@
+Component Life Cycle: times at which changes in state will occur during a components lifetime
+
+- getDefaultProps and getInitialState are called once, and set default for both Props and State.
+- componentWillMount is called right before the render, and this is the last chance to affect the state, prior to render.
+- render we've used a lot, and this is the only required method.
+- componentDidMount, after a successful render, we can now access the DOM.
+- When componentWillReceiveProps is called, we get the opportunity to change the object, and update the state.
+- shouldComponentUpdate and componentWillUpdate are invoked right before rendering, and are often used to enhance performance.
+- We also can use render to update our component. 
+- componentDidUpdate fires right after everything is updated to the DOM.
+- componentWillUnmount, this is called right before the component is unmounted.
+- componentWillReceiveProps is a react method that's part of the component life cycle, and it will allow us to send new properties to a component. It doesn't fire when the component first loads. It will fire in response to a properties update. Something else to note about componentWillReceiveProps is that it always takes in nextProps as an argument of the function. This will mean that when new props are sent in, we can update the properties.

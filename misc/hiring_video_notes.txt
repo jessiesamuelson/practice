@@ -1,0 +1,89 @@
+- hash table
+- big o notation
+- how long does it take to find things
+- how long does it take to sort things
+
+# write a program that breaks up a string of words with no spaces into a string with the appropriate spaces
+
+DISAMBIGUATE EXPECTED RESULT:
+- what if we have an empty string
+- what if we have a null string
+- are we talking two words? more? other special characters? numbers?
+- "peanutbutter" -> "peanut butter"
+
+STATE AND CLARIFY KEY ASSUMPTIONS
+- where do the words come from? 
+- Use a dictionary, or dictionary API
+- What does a dictionary mean?  Maybe you have a big set of words or a function called words?
+
+CLARIFY THE FUNCTION SIGNATURE
+- understand whats coming in and whats coming out?
+
+WORKING THROUGHT THE PROBLEM
+- Start with the first solution that comes to mind
+- This will usually be a brute force solution (inefficient)
+- Run through at least one or two examples to check for correctness
+- Check for edge cases
+- Make sure your recursion terminates
+- off by one errors
+- reasonable variable names
+- ask the interviewer if they have any questions before refinement
+
+REFINE THE SOLUTION
+- Maybe you get a faster solution
+- Maybe now we'll assume we have multiple words
+- Consider other ways to split the words
+- allow for an arbitrary number of words
+  "applesauceman" -> "apple sauce man"
+  "amidoingwell" -> "am i doing well"
+  "peanutbutter" -> "peanut butter" or "pea nut butter"
+- What if the dictionary cannot fit in memory?
+- How would you print the most likely of multiple choices?
+- What if the words are not spelled correctly?
+
+public static String breakIntoSpaces(String source) {
+	for (int i = 1; i < source.length(); i++ ) {
+		String left = source.substring(0, i);
+		String right = source.substring(i, source.length);
+		if ( DICTIONARY.contains(left) && DICTIONARY.contains(right) ) {
+		  return left + " " + right;
+		}
+	}
+	return source;
+}
+
+OPTIMIZING
+- Talk through naive solution(s), see if you can come up with a reasonable efficient one
+- Time/space tradeoffs
+- Assumptions: what if the input is big? small?
+
+API
+- If you can't remember the name of a method, or how % behaves with negative numbers, ask!
+
+TESTING
+- Say what cases you would test
+- Tru to reserve time to work small case (iron out boundary conditions, etc.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

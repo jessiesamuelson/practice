@@ -1,0 +1,115 @@
+# WHY REACT?
+
+- react open source by fb
+
+- its the view in mvc
+
+- easy for large scale app
+
+- uses a high speed virtual DOM
+
+- clean easy to understand JSX syntax
+
+
+
+# DOM (Document Object Model)
+
+- strucutre of html/xml
+
+- reading and writing to DOM is slow, reading and writing to JS is fast
+
+- React virtual DOM is a JS object
+
+- React never reads from the "real" DOM
+
+- React only writes to the real DOM if needed
+
+- React efficiently handles DOM updates
+
+- Backbone is slow, it rerenders
+
+
+
+# COMPONENTS
+
+- React components are composable, which means UI is comprised of different components
+
+- Reacts components are composable, so I can reuse all I want
+
+- React.render only returns one node/component (this can be multiple components, but they need to be wrapped in a container)
+
+
+
+# PROPERTIES
+
+- Adding properties to a component, is similar to assigning attributes to HTML
+
+
+# FUNCTIONS
+
+- React.createElment( type, properties, content ) 
+  ex: React.createElment( 'div', null, "hello world" )
+
+- React.render( component, where_to_mount_in_DOM )
+  ex: React.render( <MyComponent />, document.body )
+
+
+
+# COMPILE JSX
+
+- Do this to avoid CORS issues
+
+- sudo npm install babel-cli -g
+
+- babel script.js --out-file script-compiled.js
+
+
+# RUN LOCAL SERVER
+
+- Use this also to avoid CORS issues
+
+- sudo npm install local-web-server -g
+
+- ws (from CLI)
+
+When rendering our note components, we pass a key property to our component when it's part of an array of children. Our board is the parent. Its note children all contain a key property. React decides what to re-render, based on IDs. If a change occurs to an element, React will re-render that element. If our children are dynamic, let's say they get shuffled around via a random function, or maybe new components get added to the beginning of an array, the importance of keys becomes even more clear.
+
+To ensure that the state and identity of our components is maintained throughout multiple renders, we need to assign it a unique key. 
+
+componentWillMount will fire right before the first render.
+
+
+
+#COMPONENT LIFE CYCLE:
+
+= React provides hooks for creation, lifetime, and teardown of a component. 
+
+- [getDefaultProps] and [getInitialState] are called once, and set default for both Props and State.
+
+- [componentWillMount] is called right before the render, and this is the last chance to affect the state, prior to render.
+
+- [render] we've used a lot, and this is the only required method.
+
+- [componentDidMount], after a successful render, we can now access the DOM.
+
+- When [componentWillReceiveProps] is called, we get the opportunity to change the object, and update the state.
+
+- [shouldComponentUpdate] and [componentWillUpdate] are invoked right before rendering, and are often used to enhance performance.
+
+- [componentDidUpdate] fires right after everything is updated to the DOM.
+
+- [componentWillUnmount], this is called right before the component is unmounted. It can help us do things like clean up DOM elements, and invalidate timers. When called on the Parent, it will unmount all of the Children.
+
+
+- If you want to reuse a style on elements that don't share classes or IDs, we can apply the same style through "getDefaultProps".
+
+
+Creating Node application:
+npm init
+npm install --save-dev babel-cli@6.4.0
+npm install --save-dev babel-preset-react
+
+"build": "babel js -d built"  
+  - Compiles javascript from Note.js and builds pure js in new directory called built
+
+ npm install --save httpster

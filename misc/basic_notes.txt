@@ -1,0 +1,28 @@
+# arr.splice
+  - mutates array
+  - arr.splice( index, items_to_remove (number), items to insert(value(s)) )
+
+  var arr = [1,2,3,4,5]
+  
+  arr.splice(2, 1, 902, 903)
+  returns: [3]
+
+  arr = [1, 2, 902, 903, 4, 5]
+
+# arr.slice
+  - doesn't mutate array
+  - arr.slice( index_start_of_slice, index_upto_but_not_including_slice )
+
+  var arr = [1,2,3,4,5]
+  
+  arr.slice(2,3)
+  returns [3]
+  arr = [1, 2, 3, 4, 5]
+
+# string.slice
+  - works the same as array.slice (string has no splice method)
+
+  var j = "jessie"
+  j.slice(4,6)
+  returns "ie"
+  j = "jessie"
