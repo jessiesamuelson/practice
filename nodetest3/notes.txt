@@ -1,0 +1,82 @@
+http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/
+
+
+REST
+
+1. Use HTTP methods explicitly.
+This one's pretty straightforward. To retrieve data, you use GET. To create data, you use POST. To update or change data, you use PUT (not used in this tutorial). To delete data you use DELETE. So for example, this once-common approach is not a good one:
+
+2. Be stateless.
+This is a complicated concept but it boils down to “don't store state information on the server”. If you must save state, save it on the client side via cookies or other methods. A front-end framework like Angular (outside the scope of this tutorial, but stay tuned!) is particularly helpful here, as it creates an entire client-side MVC setup where you can save and manipulate the state of elements without hammering your server.
+
+
+3. Expose directory structure-like URIs.
+Instead of: 
+  http://app.com/getfile.php?type=video&game=skyrim&pid=68
+You want:
+  http://app.com/files/video/skyrim/68
+
+
+4. Transfer XML, JavaScript Object Notation (JSON), or both.
+Just make sure that your back-end is sending XML or JSON 
+
+mongod --dbpath /Users/jessicasamuelson/src/nodetest3/data
+
+mongo
+
+use nodetest3
+
+db.userlist.insert({'username' : 'test1','email' : 'test1@test.com','fullname' : 'Bob Smith','age' : 27,'location' : 'San Francisco','gender' : 'Male'})
+db.userlist.insert({'username' : 'test2','email' : 'test2@test.com','fullname' : 'Jane Doe','age' : 29,'location' : 'New York','gender' : 'Female'})
+
+db.userlist.find().pretty()
+
+
+In app.js add:
+
+// Database
+var mongo = require('mongodb');
+var monk  = require('monk');
+var db    = monk('localhost:27017/nodetest2');
+
+and 
+
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
+
+(just above:)
+
+
+app.use('/', routes);
+app.use('/users', users);
+
+
+This is a single-page app, we're using the Index route and view for display purposes. We're going to use the user route to set up
+our data I/O … the services we want to create to show, add, and delete users from our database
+
+Update users.js as follows:
+
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+router.get('/', function(req, res) {
+  res.send('respond with a resource');
+});
+
+module.exports = router;
+
+The purpose of this code is: if you do an HTTP GET to /users/userlist, our server will return JSON that lists all of the users in the database. 
+
+
+
+in node_modules/bson/ext/index.js change the lines:
+
+bson = require('../build/Release/bson');
+
+to 
+
+bson require('bson');
